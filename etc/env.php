@@ -38,47 +38,45 @@ return [
     'x-frame-options' => 'SAMEORIGIN',
     'MAGE_MODE' => 'developer',
     'session' => [
-        'save' => 'files'
+        'save' => 'redis',
+        'redis' => [
+            'host' => '127.0.0.1',
+            'port' => '6379',
+            'password' => '',
+            'timeout' => '2.5',
+            'persistent_identifier' => '',
+            'database' => '2',
+            'compression_threshold' => '2048',
+            'compression_library' => 'gzip',
+            'log_level' => '1',
+            'max_concurrency' => '6',
+            'break_after_frontend' => '5',
+            'break_after_adminhtml' => '30',
+            'first_lifetime' => '600',
+            'bot_lifetime' => '7200'
+        ]
     ],
     'cache' => [
-    'frontend' => [
-        'default' => [
-            'backend' => 'Cm_Cache_Backend_Redis',
-            'backend_options' => [
-                'server' => '127.0.0.1',
-                'port' => '6379',
-                'database' => '0',
+        'frontend' => [
+            'default' => [
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => '127.0.0.1',
+                    'port' => '6379',
+                    'database' => '0'
+                ]
+            ],
+            'page_cache' => [
+                'backend' => 'Cm_Cache_Backend_Redis',
+                'backend_options' => [
+                    'server' => '127.0.0.1',
+                    'port' => '6379',
+                    'database' => '1',
+                    'compress_data' => '1'
+                ]
             ]
-        ],
-        'page_cache' => [
-            'backend' => 'Cm_Cache_Backend_Redis',
-            'backend_options' => [
-                'server' => '127.0.0.1',
-                'port' => '6379',
-                'database' => '1',
-                'compress_data' => '1'
-            ]
-        ],
+        ]
     ],
-],'session' => [
-    'save' => 'redis',
-    'redis' => [
-        'host' => '127.0.0.1',
-        'port' => '6379',
-        'password' => '',
-        'timeout' => '2.5',
-        'persistent_identifier' => '',
-        'database' => '2',
-        'compression_threshold' => '2048',
-        'compression_library' => 'gzip',
-        'log_level' => '1',
-        'max_concurrency' => '6',
-        'break_after_frontend' => '5',
-        'break_after_adminhtml' => '30',
-        'first_lifetime' => '600',
-        'bot_lifetime' => '7200',
-    ],
-],
     'lock' => [
         'provider' => 'db',
         'config' => [
